@@ -4,7 +4,7 @@ import { InternalExceptionFilter } from 'src/core/filters/internal-exception.fil
 
 import { ApiResponse as ApiResult } from '../../core/dto/api.response';
 import { AuthService } from './auth.service';
-import { Code2SessionRequestArgs, LoginRequestArgs, WeappLoginRequestArgs } from './dto/login.request';
+import { Code2SessionRequestArgs, LoginRequestArgs, RegisterArgs, WeappLoginRequestArgs } from './dto/login.request';
 import { LoginResponse } from './dto/login.response';
 
 //@ApiTags()给swaager文档分组
@@ -12,6 +12,13 @@ import { LoginResponse } from './dto/login.response';
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
+
+  @ApiOperation({ summary: '用户注册' })
+  @Post('register')
+  async register(@Body() requestInfo: RegisterArgs): Promise<ApiResult<any>> {
+    const result = await this.authService.register(requestInfo);
+    return ApiResult.success<any>(result);
+  }
 
   @ApiOperation({ summary: '用户登陆' })
   @ApiResponse({ type: LoginResponse })

@@ -1,6 +1,38 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 
+//注册用户参数： 账号+密码
+export class RegisterArgs {
+  @IsNotEmpty({ message: '昵称不能为空！' })
+  @ApiProperty({ description: '昵称', required: true })
+  nickname: string;
+
+  @ApiProperty({ description: '真实姓名', required: false })
+  truename: string;
+
+  @IsNotEmpty({ message: '手机号不能为空！' })
+  @ApiProperty({ description: '手机号', required: true })
+  mobile: string;
+
+  @IsNotEmpty({ message: '头像附件路径不能为空！' })
+  @ApiProperty({ description: '头像附件路径', required: true })
+  avatarUrl: string;
+
+  @IsNotEmpty({ message: '密码不能为空！' })
+  @ApiProperty({ description: '密码', required: true })
+  password: string;
+
+  @IsNotEmpty({ message: '再次密码不能为空！' })
+  @ApiProperty({ description: '再次输入密码', required: true })
+  repassword: string;
+
+  @ApiProperty({
+    description: '性别 0未知 1男性 2女性',
+    required: false,
+  })
+  gender: number;
+}
+
 //登录参数: 账号+密码
 export class LoginRequestArgs {
   @IsNotEmpty({ message: '手机号不能为空' })

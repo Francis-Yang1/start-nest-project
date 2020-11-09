@@ -8,7 +8,7 @@ import { TmploginEntity } from 'src/entity/tmplogin.entity';
 import { UserEntity } from 'src/entity/user.entity';
 import { Repository } from 'typeorm';
 
-import { LoginRequestArgs, WeappLoginRequestArgs } from './dto/login.request';
+import { LoginRequestArgs, RegisterArgs, WeappLoginRequestArgs } from './dto/login.request';
 import { LoginResponse, WeappLoginResponse } from './dto/login.response';
 
 @Injectable()
@@ -29,6 +29,48 @@ export class AuthService {
   async sign(payload: any): Promise<string> {
     const token = 'Bearer ' + this.jwtService.sign(payload);
     return token;
+  }
+
+  //用户注册: 账号+密码
+  async register(requestInfo: RegisterArgs): Promise<ApiResponse<UserEntity>> {
+    //检查两次输入的密码是否一致
+    if (requestInfo.password !== requestInfo.repassword) {
+      throw new HttpException('两次密码输入不一致', 200);
+    }
+
+    //根据传回来的手机号，获取用户信息
+    const userInfo = await this.userRepository.findOne({
+      where: {
+        mobile: requestInfo.mobile,
+        status: 1,
+      },
+    });
+
+    if (!userInfo) {
+      // 首次注册的用户生成一个默认密码
+      const salt = Math.round(Math.random() * 999999999).toString(16); //生成加密需要的盐，toString(16)，变成16进制字符串
+      //获取加密后的密码，初始默认为‘snp2020’----start-nest-project2020
+      const encryptPwd = await EncryptTool.encryptUser(
+        requestInfo.password,
+        salt,
+      );
+
+      //存入用户表的信息
+      const addUserInfo = {
+        nickname: requestInfo.nickname,
+        gender: requestInfo.gender,
+        password: encryptPwd,
+        salt: salt,
+      };
+      requestInfo.truename && (addUserInfo['truename'] = requestInfo.truename);
+      requestInfo.avatarUrl && (addUserInfo['avatar'] = requestInfo.avatarUrl);
+
+      const result = await this.userRepository.save(addUserInfo);
+      return ApiResponse.success<UserEntity>(result);
+      // 或 await this.userRepository.create(addUserInfo).save();
+    } else {
+      throw new HttpException('该用户已存在！', 200);
+    }
   }
 
   //验证账号+密码，判断是否登录成功
