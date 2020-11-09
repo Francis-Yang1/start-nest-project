@@ -1,0 +1,27 @@
+{
+  "debug.node.autoAttach": "off",
+  "editor.tabSize": 2,
+  "editor.rulers": [80, 120],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true,
+  "editor.formatOnSave": true,
+  "files.autoSave": "onFocusChange",
+  "files.trimTrailingWhitespace": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.implementationsCodeLens.enabled": true,
+  "javascript.preferences.quoteStyle": "single",
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.improtModuleSpecifier": "relative",
+  "typescript.preferences.quoteStyle": "single",
+  "docthis.includeAutorTag": true,
+  "docthis.includeDateTag": true,
+  "docthis.includeDescriptionTag": true,
+  "eslint.alwaysShowStatus": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "typescriptHero.imports.stringQuoteStyle": "'",
+  "typescriptHero.imports.organizeOnSave": true
+}

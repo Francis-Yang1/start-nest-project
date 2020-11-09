@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "wix.vscode-import-cost",
+    // "kumar-harsh.graphql-for-vscode",
+    "visualstudioexptteam.vscodeintellicode",
+    "ms-ceintl.vscode-language-pack-zh-hans",
+    "donjayamanne.githistory",
+    "eamodio.gitlens",
+    "dbaeumer.vscode-eslint",
+    "joelday.docthis",
+    "esbenp.prettier-vscode",
+    "rbbit.typescript-hero"
+  ]
+}
