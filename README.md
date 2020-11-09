@@ -82,7 +82,7 @@ yarn start:dev
 ```
 NODE_ENV=develop
 
-PORT=3000
+PORT=6060
 
 DB_TYPE=mysql
 DB_HOST=localhost
