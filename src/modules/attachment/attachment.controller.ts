@@ -28,15 +28,14 @@ export class AttachmentController {
     //     1.sh
     //  #basename /root/basename/1.sh  .sh //加后缀
     //     1
-    attach.attachname = basename(file.riginalname); //originalname获取上传文件的原名
-
+    attach.attachname = basename(file.originalname); //originalname获取上传文件的原名
     //extname返回path路径文件扩展名，如果path以 ‘.' 为结尾，将返回 ‘.'，如果无扩展名 又 不以'.'结尾，将返回空值。
     //   path.extname('index.html')； // returns '.html'
     //   path.extname('index.')； // returns '.'
     //   path.extname('index')； // returns ''
     //slice(开始位置[含],结束位置[不含])；substring(开始位置[含,负数或其它按0处理],截取长度>0[否则返回空])、substr(开始位置[含，可为负],截取长度>0[否则返回空])
     attach.extension = extname(file.originalname).slice(1);
-    attach.filepath = `${file.destination.silice(1)}/${file.filename}`;
+    attach.filepath = `${file.destination.slice(1)}/${file.filename}`;
     attach.size = file.size;
     //mimetype:资源的媒体类型，通过 HTTP 协议，由 Web 服务器告知浏览器（通过 Content-Type 来表示）处理的文件类型
     attach.mimetype = file.mimetype;
