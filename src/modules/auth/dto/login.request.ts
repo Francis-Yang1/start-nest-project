@@ -1,10 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty } from 'class-validator';
 
 //登录参数: 账号+密码
 export class LoginRequestArgs {
+  @IsNotEmpty({ message: '手机号不能为空' })
   @ApiProperty({ description: '手机号', required: true })
   mobile: string;
 
+  @IsNotEmpty({ message: '密码不能为空' })
   @ApiProperty({ description: '密码', required: true })
   password: string;
 }
