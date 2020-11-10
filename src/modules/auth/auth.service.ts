@@ -57,6 +57,7 @@ export class AuthService {
 
       //存入用户表的信息
       const addUserInfo = {
+        mobile: requestInfo.mobile,
         nickname: requestInfo.nickname,
         gender: requestInfo.gender,
         password: encryptPwd,
