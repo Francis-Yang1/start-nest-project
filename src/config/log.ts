@@ -4,7 +4,7 @@ export default {
   enabled: true,
   timestamp: true,
   useLevelLabels: true,
-  prettyPrint: false,
+  prettyPrint: true,
   level: 'info',
   path: path.resolve(__dirname, '../app.log'),
 };
