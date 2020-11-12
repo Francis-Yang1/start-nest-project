@@ -8,11 +8,11 @@ import { AppModule } from './app.module';
 import { InternalExceptionFilter } from './core/filters/internal-exception.filter';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true });
+  const app = await NestFactory.create(AppModule, {
+    cors: true,
+    logger: false,
+  });
   app.useGlobalPipes(new ValidationPipe());
-
-  //引入日志模块
-  app.useLogger(app.get(Logger)); //from nestjs-pino
 
   //为所有路由设置一个统一的根路径
   app.setGlobalPrefix('api');
@@ -34,6 +34,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api-docs', app, document);
 
+  //利用拦截器捕获日志
   app.useGlobalFilters(new InternalExceptionFilter(app.get(Logger)));
 
   //先安装： yarn add nestjs-config

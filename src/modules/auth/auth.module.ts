@@ -17,6 +17,8 @@ export const jwtOptions = {
 
 @Module({
   imports: [
+    //放开注释即可在后台打印该模块下的接口日志
+    // LoggerModule.forRoot(), //import { LoggerModule } from 'nestjs-pino';
     //Passport,护照，用于身份验证
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register(jwtOptions),

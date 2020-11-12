@@ -71,7 +71,7 @@ yarn -v
 ```bash
 
 git clone git@github.com:Funch-Yang/start-nest-project.git # 拉取代码
-cd sdy-third-party
+cd start-nest-project
 yarn install
 yarn start:dev
 

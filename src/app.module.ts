@@ -1,5 +1,4 @@
 import { Global, HttpModule, Module } from '@nestjs/common';
-import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from 'nestjs-config';
 import { LoggerModule } from 'nestjs-pino';
@@ -62,7 +61,7 @@ const ENV = process.env.NODE_ENV;
     }),
 
     //注册定时任务, yarn add @nestjs/schedule
-    ScheduleModule.forRoot(),
+    // ScheduleModule.forRoot(),
     //casbin 鉴权  权限控制
     CasbinModule.registerAsync({
       inject: [ConfigService],
