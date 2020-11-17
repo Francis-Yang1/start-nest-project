@@ -1,9 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 //注册用户参数： 账号+密码
 export class RegisterArgs {
   @IsNotEmpty({ message: '昵称不能为空！' })
+  @IsString({ message: '昵称必须是String类型' })
   @ApiProperty({ description: '昵称', required: true })
   nickname: string;
 
@@ -11,6 +12,7 @@ export class RegisterArgs {
   truename: string;
 
   @IsNotEmpty({ message: '手机号不能为空！' })
+  @IsNumber()
   @ApiProperty({ description: '手机号', required: true })
   mobile: string;
 
