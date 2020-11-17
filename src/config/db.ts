@@ -7,7 +7,7 @@ export default {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
   synchronize: false,
-  logging: 'all', // query, error, schema, warn, info, log, all
+  logging: 'all', // query, error, schema, warn, info, log, all   是否将 SQL 语句打印到控制台
   logger: 'simple-console',
   maxQueryExecutionTime: 500, // 单位毫秒
 };
