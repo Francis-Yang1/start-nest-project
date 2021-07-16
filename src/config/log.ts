@@ -5,6 +5,7 @@ export default {
   timestamp: true,
   useLevelLabels: true,
   prettyPrint: true,
-  level: 'info',
+  // level: 'info',
+  level: 6,
   path: path.resolve(__dirname, '../app.log'),
 };
